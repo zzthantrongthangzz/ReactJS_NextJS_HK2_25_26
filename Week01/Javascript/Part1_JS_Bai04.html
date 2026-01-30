@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Tip Calculator</h2>
+    <p>
+        Enter bill value: <input type="number" id="billInput" value="275">
+    </p>
+
+    <button id="btnCalc">Calculate Tip</button>
+
+    <script>
+        document.getElementById("btnCalc").addEventListener("click", function() {
+
+            var bill = Number(document.getElementById("billInput").value); //lấy gtri hoá đơn
+
+            var tip = (bill >= 50 && bill <= 300) ? (bill * 0.15) : (bill * 0.2);
+            var total = bill + tip;
+            console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${total}`);
+        });
+    </script>
+</body>
+</html>
