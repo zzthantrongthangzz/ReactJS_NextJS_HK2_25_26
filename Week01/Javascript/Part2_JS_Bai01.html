@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>CD1 - Part2</h2>
+    <div style="margin-bottom: 20px;">
+        <h3>Team Dolphins</h3>
+        <input type="number" id="d1" placeholder="Score 1">
+        <input type="number" id="d2" placeholder="Score 2">
+        <input type="number" id="d3" placeholder="Score 3">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <h3>Team Koalas</h3>
+        <input type="number" id="k1" placeholder="Score 1">
+        <input type="number" id="k2" placeholder="Score 2">
+        <input type="number" id="k3" placeholder="Score 3">
+    </div>
+
+    <button id="btnCheck">Check Winner</button>
+
+    <script>
+        const calcAverage = (a, b, c) => (a + b + c) / 3; //Tạo hàm
+
+        // Hàm kiểm tra team thắng
+        const checkWinner = function (avgDolphins, avgKoalas) {
+            if (avgDolphins >= 2 * avgKoalas) {
+                console.log(`Dolphins win (${avgDolphins} vs. ${avgKoalas})`);
+            } else if (avgKoalas >= 2 * avgDolphins) {
+                console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`);
+            } else {
+                console.log(`No team wins (Scores: Dolphins ${avgDolphins} vs. Koalas ${avgKoalas})`);
+            }
+        }
+
+        document.getElementById("btnCheck").addEventListener("click", function() {
+            const d1 = Number(document.getElementById("d1").value);
+            const d2 = Number(document.getElementById("d2").value);
+            const d3 = Number(document.getElementById("d3").value);
+
+            const k1 = Number(document.getElementById("k1").value);
+            const k2 = Number(document.getElementById("k2").value);
+            const k3 = Number(document.getElementById("k3").value);
+
+            const scoreDolphins = calcAverage(d1, d2, d3);
+            const scoreKoalas = calcAverage(k1, k2, k3);
+
+            checkWinner(scoreDolphins, scoreKoalas);
+        });
+    </script>
+</body>
+</html>
