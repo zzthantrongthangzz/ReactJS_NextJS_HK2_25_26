@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Challenge #3: Gymnastics</title>
+</head>
+<body>
+    <h2>Coding Challenge #3: Gymnastics Winner</h2>    
+    <h3>Team Dolphins</h3>
+    <p>
+        Score 1: <input type="number" id="d1" value="96">
+        Score 2: <input type="number" id="d2" value="108">
+        Score 3: <input type="number" id="d3" value="89">
+    </p>
+    <h3>Team Koalas</h3>
+    <p>
+        Score 1: <input type="number" id="k1" value="88">
+        Score 2: <input type="number" id="k2" value="91">
+        Score 3: <input type="number" id="k3" value="110">
+    </p>
+
+    <button id="btnCheck">Find Winner</button>
+
+    <script>
+        document.getElementById("btnCheck").addEventListener("click", function() {
+            
+            var d1 = Number(document.getElementById("d1").value);
+            var d2 = Number(document.getElementById("d2").value);
+            var d3 = Number(document.getElementById("d3").value);
+
+            var k1 = Number(document.getElementById("k1").value);
+            var k2 = Number(document.getElementById("k2").value);
+            var k3 = Number(document.getElementById("k3").value);
+
+            var scoreDolphins = (d1 + d2 + d3) / 3;
+            var scoreKoalas = (k1 + k2 + k3) / 3;
+
+            console.log("Dolphins Average Score: " + scoreDolphins);
+            console.log("Koalas Average Score: " + scoreKoalas);
+            
+            if (scoreDolphins > scoreKoalas && scoreDolphins >= 100) {
+                console.log("Dolphins win the trophy!");
+            } 
+            else if (scoreKoalas > scoreDolphins && scoreKoalas >= 100) {
+                console.log("Koalas win the trophy!");
+            } 
+            else if (scoreDolphins === scoreKoalas && scoreDolphins >= 100 && scoreKoalas >= 100) {
+                console.log("Both win the trophy (Draw)!");
+            } 
+            else {
+                console.log("No one wins the trophy (Scores below 100 or tie below 100).");
+            }
+        });
+    </script>
+</body>
+</html>
