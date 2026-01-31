@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>CD3 - Part2</h2>
+    <p>Mark Miller: 78kg, 1.69m</p>
+    <p>John Smith: 92kg, 1.95m</p>
+    <button id="btnCompare">Compare BMI</button>
+
+    <script>
+        document.getElementById("btnCompare").addEventListener("click", function() {
+
+            const mark = {
+                name: 'Mark',
+                mass: 78,
+                height: 1.69,
+
+                calcBMI: function() {
+                    this.bmi = this.mass / (this.height ** 2);
+                    return this.bmi; 
+                }
+            };
+
+            const john = {
+                name: 'John',
+                mass: 92,
+                height: 1.95,
+                calcBMI: function() {
+                    this.bmi = this.mass / (this.height ** 2);
+                    return this.bmi;
+                }
+            };
+
+            mark.calcBMI();
+            john.calcBMI();
+
+            console.log("Mark's Object:", mark);
+            console.log("John's Object:", john);
+
+            if (mark.bmi > john.bmi) {
+                console.log(`${mark.name}'s BMI (${mark.bmi.toFixed(1)}) is higher than ${john.name}'s (${john.bmi.toFixed(1)})!`); //.toFixed lam tron thap phan
+            } else if (john.bmi > mark.bmi) {
+                console.log(`${john.name}'s BMI (${john.bmi.toFixed(1)}) is higher than ${mark.name}'s (${mark.bmi.toFixed(1)})!`);
+            } else {
+                console.log(`Both have the same BMI (${mark.bmi.toFixed(1)})!`);
+            }
+        });
+    </script>
+</body>
+</html>
