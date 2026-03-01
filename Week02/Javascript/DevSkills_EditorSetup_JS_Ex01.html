@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Developer Skills & Editor Setup - Coding Challenge 1</h2>
+    <button id="btnRun">Print Forecast</button>
+
+    <script>
+        const printForecast = function(arr) {
+            let str = "... ";
+            
+            for (let i = 0; i < arr.length; i++) {
+                str += `${arr[i]}°C in ${i + 1} days ... `; // arr[i]: nhiệt độ, i + 1: số ngày
+            }
+
+            console.log(str);
+        };
+
+        document.getElementById("btnRun").addEventListener("click", function() {
+            const data1 = [17, 21, 23];
+            const data2 = [12, 5, 5, 0, 4];
+
+            console.log("Test Data 1");
+            printForecast(data1);
+
+            console.log("Test Data 2");
+            printForecast(data2);
+        });
+    </script>
+</body>
+</html>
