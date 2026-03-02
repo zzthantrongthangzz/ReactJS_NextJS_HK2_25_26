@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background-color: #222; color: white; text-align: center; }
+        .number { background: #eee; color: #222; width: 15rem; margin: 20px auto; font-size: 2rem; }
+    </style>
+</head>
+<body>
+    <button class="again">Again!</button>
+    <div class="number">?</div>
+    <input type="number" class="guess">
+    <p class="message">Start guessing...</p>
+    <p>Score: <span class="score">20</span></p>
+
+    <script>
+        let score = 20;
+        let secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+        document.querySelector('.again').addEventListener('click', function() {
+            
+            // reset biến logic 
+            score = 20;
+            secretNumber = Math.trunc(Math.random() * 20) + 1;
+
+            // reset giao diện
+            document.querySelector('.message').textContent = 'Start guessing...';
+            document.querySelector('.score').textContent = score;
+            document.querySelector('.number').textContent = '?';
+            document.querySelector('.guess').value = '';
+
+            // reset Style
+            document.querySelector('body').style.backgroundColor = '#222';
+            document.querySelector('.number').style.width = '15rem';
+        });
+    </script>
+</body>
+</html>
