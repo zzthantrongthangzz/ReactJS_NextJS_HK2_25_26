@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>DataStructures_ModernOperators_Strings_JS_Ex02</h2>
+
+    <button id="btnRun">Run</button>
+
+    <script>
+        // Dữ liệu
+        const game = {
+            team1: 'Bayern Munich',
+            team2: 'Borrussia Dortmund',
+            players: [
+                ['Neuer', 'Pavard', 'Martinez', 'Alaba', 'Davies', 'Kimmich', 'Goretzka', 'Coman', 'Muller', 'Gnarby', 'Lewandowski'],
+                ['Burki', 'Schulz', 'Hummels', 'Akanji', 'Hakimi', 'Weigl', 'Witsel', 'Hazard', 'Brandt', 'Sancho', 'Gotze'],
+            ],
+            score: '4:0',
+            scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+            date: 'Nov 9th, 2037',
+            odds: {
+                team1: 1.33,
+                x: 3.25,
+                team2: 6.5,
+            },
+        };
+
+        document.getElementById("btnRun").addEventListener("click", function() {
+
+            // 1
+            console.log("Danh sách ghi bàn");
+            for (const [index, player] of game.scored.entries()) {
+                console.log(`Goal ${index + 1}: ${player}`);
+            }
+
+            // 2. tỉ lệ cược trung bình
+            console.log("\nTỉ lệ cược trung bình");
+            const odds = Object.values(game.odds); // object thành mảng các giá trị [1.33, 3.25, 6.5]
+            let sum = 0;
+            for (const odd of odds) {
+                sum += odd;
+            }
+            const averageOdd = sum / odds.length;
+            console.log(`Average Odd: ${averageOdd.toFixed(2)}`);
+
+            //3 In tỉ lệ cược theo định dạng
+            console.log("\nĐịnh dạng tỉ lệ cược");
+            for (const [teamKey, odd] of Object.entries(game.odds)) {
+                const teamStr = teamKey === 'x' ? 'draw' : `victory ${game[teamKey]}`;
+                console.log(`Odd of ${teamStr}: ${odd}`);
+            }
+
+            // 4 Tạo object scorers đếm số bàn thắng
+            console.log("\n Object Người ghi bàn");
+            const scorers = {};
+            for (const player of game.scored) {
+
+                if (scorers[player]) { // Nếu cầu thủ đã có trong object: cộng thêm 1, chưa có - gán bằng 1
+                    scorers[player]++;
+                } else {
+                    scorers[player] = 1;
+                }
+            }
+            console.log(scorers);
+        });
+    </script>
+</body>
+</html>
