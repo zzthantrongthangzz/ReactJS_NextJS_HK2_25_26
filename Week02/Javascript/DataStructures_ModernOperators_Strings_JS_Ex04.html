@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>DataStructures_ModernOperators_Strings_JS_Ex04</h2>
+
+    <textarea id="inputText" rows="7" cols="30">
+        underscore_case
+        first_name
+        Some_Variable
+        calculate_AGE
+        delayed_departure
+    </textarea>
+    <br><br>
+    <button id="btnConvert">RUN</button>
+
+    <script>
+        document.getElementById("btnConvert").addEventListener("click", function() {
+            // Lấy dữ liệu từ textarea
+            const text = document.getElementById("inputText").value;
+            
+            // 1 
+            const rows = text.split('\n'); //Tách văn bản thành mảng các dòng
+            
+            console.log("Kết quả");
+
+            for (const [i, row] of rows.entries()) {
+                
+                // 2
+                const [first, second] = row.toLowerCase().trim().split('_');
+                // 3.
+                const output = `${first}${second[0].toUpperCase() + second.slice(1)}`;
+                // 4
+                console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+            }
+        });
+    </script>
+</body>
+</html>
