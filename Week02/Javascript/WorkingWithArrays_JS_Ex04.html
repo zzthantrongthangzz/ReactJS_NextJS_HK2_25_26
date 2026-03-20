@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>WorkingWithArrays_JS_Ex04</h2>
+
+    <button id="btnRun">Run</button>
+
+    <script>
+        document.getElementById("btnRun").addEventListener("click", function() {
+            const dogs = [
+                { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+                { weight: 8, curFood: 200, owners: ['Matilda'] },
+                { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+                { weight: 32, curFood: 340, owners: ['Michael'] },
+            ];
+
+            // 1. Tính recommendedFood
+            dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+            console.log("1. Mảng dogs sau khi thêm recFood:", dogs);
+
+            // 2. Tìm chó của Sarah
+            const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
+            console.log(
+                `2. Chó của Sarah đang ăn quá ${
+                    dogSarah.curFood > dogSarah.recFood ? 'nhiều (much)' : 'ít (little)'
+                }`
+            );
+
+            // 3. Tạo mảng ownersEatTooMuch và ownersEatTooLittle
+            const ownersEatTooMuch = dogs
+                .filter(dog => dog.curFood > dog.recFood)
+                .flatMap(dog => dog.owners);
+            
+            const ownersEatTooLittle = dogs
+                .filter(dog => dog.curFood < dog.recFood)
+                .flatMap(dog => dog.owners);
+
+            console.log("3a. ownersEatTooMuch:", ownersEatTooMuch);
+            console.log("3b. ownersEatTooLittle:", ownersEatTooLittle);
+
+            // 4. Chuỗi thông báo
+            console.log(`4a. ${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+            console.log(`4b. ${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
+
+            // 5. Ktra có chó nào ăn lượng chính xác không
+            console.log("5. Có chó ăn chính xác recFood không?", dogs.some(dog => dog.curFood === dog.recFood));
+
+            // 6. Ktr có chó nào ăn lượng OK không
+            const checkEatingOkay = dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+            console.log("6. Có chó ăn lượng okay không?", dogs.some(checkEatingOkay));
+
+            // 7. Tạo mảng những con chó ăn lượng OK
+            console.log("7. Danh sách chó ăn lượng okay:", dogs.filter(checkEatingOkay));
+
+            // 8. Tạo bản sao, sắp xếp theo recFood tăng dần
+            const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+            console.log("8. Mảng dogs sắp xếp theo recFood tăng dần:", dogsSorted);
+        });
+    </script>
+</body>
+</html>
