@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>WorkingWithArrays_JS_Ex02</h2>
+    <button id="btnRun">Run</button>
+
+    <script>
+        const calcAverageHumanAge = function(ages) {
+            
+            // 1. Tính tuổi theo năm của người
+            const humanAges = ages.map(function(age) {
+                return age <= 2 ? 2 * age : 16 + age * 4;
+            });
+            console.log("1. Tuổi theo năm người:", humanAges);
+
+            // 2. Lọc những con chó >= 18 tuổi người
+            const adults = humanAges.filter(function(age) {
+                return age >= 18;
+            });
+            console.log("2. Chó trưởng thành (>= 18 tuổi người):", adults);
+
+            // 3. Tính tuổi tb
+            const average = adults.reduce(function(acc, age) {
+                return acc + age;
+            }, 0) / adults.length;
+
+            console.log("3. Tuổi trung bình của chó trưởng thành:", average);
+            return average;
+        };
+
+        document.getElementById("btnRun").addEventListener("click", function() {
+            // Dữ liệu kiểm tra
+            const data1 = [5, 2, 4, 1, 15, 8, 3];
+            const data2 = [16, 6, 10, 5, 6, 1, 4];
+
+            console.log("TEST DATA 1");
+            const avg1 = calcAverageHumanAge(data1);
+            console.log("\nTEST DATA 2");
+            const avg2 = calcAverageHumanAge(data2);
+        });
+    </script>
+</body>
+</html>
