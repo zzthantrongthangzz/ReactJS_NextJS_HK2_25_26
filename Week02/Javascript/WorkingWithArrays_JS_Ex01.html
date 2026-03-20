@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>WorkingWithArrays_JS_Ex01</h2>
+
+    <button id="btnRun">Check Dogs</button>
+
+    <script>
+        const checkDogs = function(dogsJulia, dogsKate) {
+            
+            //1. Xóa mèo khỏi mảng của Julia
+            const dogsJuliaCorrected = dogsJulia.slice(1, -2);
+            // 2. Gộp mảng của Julia và Kate
+            const dogs = dogsJuliaCorrected.concat(dogsKate);
+            // 3. Lặp qua từng con chó, in kết quả
+            dogs.forEach(function(dog, i) {
+                if (dog >= 3) {
+                    console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
+                } else {
+                    console.log(`Dog number ${i + 1} is still a puppy`);
+                }
+            });
+        };
+
+        document.getElementById("btnRun").addEventListener("click", function() {
+            
+            const juliaData1 = [3, 5, 2, 12, 7];    // Dữ liệu ktra
+            const kateData1 = [4, 1, 15, 8, 3];
+
+            const juliaData2 = [9, 16, 6, 8, 3];
+            const kateData2 = [10, 5, 6, 1, 4];
+
+            // 4: Chạy với Data 1
+            console.log("TEST DATA 1");
+            checkDogs(juliaData1, kateData1);
+            
+            console.log("\nTEST DATA 2");   // Chạy với Data 2
+            checkDogs(juliaData2, kateData2);
+        });
+    </script>
+</body>
+</html>
