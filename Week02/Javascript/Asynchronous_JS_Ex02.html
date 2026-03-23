@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; }
+        .images { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Asynchronous_JS_Ex02</h2>
+    <button id="btnLoad">Start</button>
+
+    <div class="images"></div>
+
+    <script>
+        const imgContainer = document.querySelector('.images');
+
+        const wait = function(seconds) {
+            return new Promise(function(resolve) {
+                setTimeout(resolve, seconds * 1000);
+            });
+        };
+
+        const createImage = function(imgPath) {
+            return new Promise(function(resolve, reject) {
+                const img = document.createElement('img');
+                img.src = imgPath;
+
+                img.addEventListener('load', function() {
+                    imgContainer.append(img);
+                    resolve(img); 
+                });
+
+                img.addEventListener('error', function() {
+                    reject(new Error('Image not found or failed to load!'));
+                });
+            });
+        };
+
+        let currentImg;
+
+        document.getElementById('btnLoad').addEventListener('click', function() {
+            
+            createImage('https://picsum.photos/id/237/400/300')
+                .then(img => {
+                    currentImg = img;
+                    console.log('Image 1 loaded successfully!');
+                    
+                    return wait(2);
+                })
+                .then(() => {
+                    currentImg.style.display = 'none';
+                    console.log('Image 1 hidden. Loading Image 2...');
+                    
+                    return createImage('https://picsum.photos/id/238/400/300'); // Ảnh tp
+                })
+                .then(img => {
+                    currentImg = img;
+                    console.log('Image 2 loaded successfully!');
+                    
+                    return wait(2);
+                })
+                .then(() => {
+                    currentImg.style.display = 'none';
+                    console.log('Image 2 hidden. Sequence complete!');
+                })
+                .catch(err => {
+                    console.error('Lỗi:', err);
+                });
+        });
+    </script>
+</body>
+</html>
