@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .countries { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        .country { border: 1px solid #ccc; padding: 15px; width: 250px; }
+        .country__name, .country__region { margin: 0 0 10px; }
+        button { padding: 10px; margin-right: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Asynchronous_JS_Ex01</h2>
+    
+    <button id="btn1">Test 1</button>
+    <button id="btn2">Test 2</button>
+    <button id="btn3">Test 3</button>
+
+    <div class="countries"></div>
+
+    <script>
+        const countriesContainer = document.querySelector('.countries');
+
+        const renderCountry = function (data) {
+            const html = `
+            <article class="country">
+                <div class="country__data">
+                    <h3 class="country__name">${data.name.common}</h3>
+                    <h4 class="country__region">${data.region}</h4>
+                    <p class="country__row"><span></span> ${(data.population / 1000000).toFixed(1)} million people</p>
+                </div>
+            </article>
+            `;
+            countriesContainer.insertAdjacentHTML('beforeend', html);
+        };
+
+        const whereAmI = function (lat, lng) {
+            console.log(`Loading coordinates: ${lat}, ${lng}...`);
+
+            fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Problem with geocoding API (${response.status}). Click slowly!`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(`You are in ${data.city}, ${data.country}`);
+
+
+                    return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Country not found (${response.status})`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    renderCountry(data[0]);
+                })
+                .catch(err => {
+                    console.error(` Something went wrong: ${err.message}`);
+                });
+        };
+        document.getElementById("btn1").addEventListener("click", () => whereAmI(52.508, 13.381));
+        document.getElementById("btn2").addEventListener("click", () => whereAmI(19.037, 72.873));
+        document.getElementById("btn3").addEventListener("click", () => whereAmI(-33.933, 18.474));
+
+    </script>
+</body>
+</html>
