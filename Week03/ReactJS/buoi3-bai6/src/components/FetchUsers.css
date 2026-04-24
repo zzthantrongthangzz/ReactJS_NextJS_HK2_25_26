@@ -1,0 +1,48 @@
+.fetch-container {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.status-idle { background-color: #e2e3e5; color: #383d41; }
+.status-loading { background-color: #cff4fc; color: #055160; }
+.status-success { background-color: #d1e7dd; color: #0f5132; }
+.status-error { background-color: #f8d7da; color: #842029; }
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.user-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.btn-action {
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #0d6efd;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-retry { background-color: #dc3545; }
