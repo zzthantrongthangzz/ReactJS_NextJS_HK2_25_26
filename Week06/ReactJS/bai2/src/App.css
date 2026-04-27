@@ -1,0 +1,15 @@
+/* Giao diện sáng */
+.light-mode {
+  background-color: #ffffff;
+  color: #333333;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Giao diện tối */
+.dark-mode {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
